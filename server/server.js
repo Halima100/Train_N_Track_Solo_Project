@@ -1,5 +1,6 @@
 const express = require('express');
 require('dotenv').config();
+process.env.SERVER_SESSION_SECRET
 
 const app = express();
 
@@ -8,6 +9,7 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
+const clientAccountRouter = require('./routes/client_account.router');
 
 // Express middleware
 app.use(express.json());
@@ -21,6 +23,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+app.use('/api/client_account', clientAccountRouter);
 
 // Serve static files
 app.use(express.static('build'));
