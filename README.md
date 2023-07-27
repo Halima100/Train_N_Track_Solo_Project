@@ -119,3 +119,37 @@ This code is also heavily commented. We recommend reading through the comments, 
 ## Update Documentation
 
 Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+
+``` 
+Client_Accounts {
+	id serial pk increments
+	user_id integer >* user.id
+	client_name varchar
+	client_goals varchar
+	client_image varchar
+}
+
+user {
+	id serial pk increments
+	username varchar(80) unique
+	password varchar(1000) > undefined.undefined
+	name varchar(80)
+	is_trainer boolean def(FALSE)
+	user_image varchar(1000)
+}
+
+Workouts {
+	id serial pk increments
+	workout varchar
+	repetition integer
+	weight integer
+	comment varchar(5000)
+	client_id integer *> Client_Accounts.id
+}
+
+client_table(stretch) {
+	id integer pk increments
+	trainer_id integer *> user.id
+	client_id integer *> user.id
+}
+```
