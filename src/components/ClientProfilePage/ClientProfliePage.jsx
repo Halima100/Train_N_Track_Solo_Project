@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import './ClientAccountPage.css'
+import './ClientProfilePage.css'
 import {useDispatch, useSelector} from 'react-redux';
+import selectedClient from '../../redux/reducers/selectClient.reducer';
+import { useHistory } from 'react-router-dom';
 
-function ClientAccountPage() {
+function ClientProfilePage() {
     const dispatch = useDispatch();
     const client = useSelector((store) => store.client);
+    const history = useHistory();
     const [clientList, setClientList] = useState([]);
   
     useEffect(() => {
@@ -28,24 +31,17 @@ function ClientAccountPage() {
           alert('Something went wrong.');
         });
     }
-    const deleteClient = (id) => {
-        fetch(`/api/client_account/${id}`, { method: 'DELETE'})
-          .then((response) => {
-            if (response.ok) {
-              fetchClients(); 
-            } else {
-              throw new Error("Network response was not OK");
-            }
-          }).catch((error) => {
-            console.log(error);
-            alert('Something went wrong.');
-          });
-      }
+
+    const clickClient = (client) => {
+        dispatch({type:"SET_SELECTED_CLIENT", payload: client});
+        history.push('/ClientAccount')
+    }
+ 
 
     return (
         <div className="container">
-       <h2>Current Clients</h2>
-
+       <h2>Clients</h2>
+      <p>Current Clients</p>
       {
         clientList.length === 0 && (
           <div>No items on the shelf</div>
@@ -55,12 +51,11 @@ function ClientAccountPage() {
         clientList.map(client => {
           return <div className="responsive" key={client.id}>
                     <div className="gallery">
-                        <img src={client.client_image } />
+                       <button> <img src={client.client_image }
+                        onClick={() => clickClient(client)} /></button>
                         <br />
                          <div className="desc">{client.client_name}</div>
-                         <div className="desc">{client.client_goals}</div>
                         <div style={{textAlign: 'center', padding: '5px'}}>
-                        <button style={{cursor: 'pointer'}} onClick={() => deleteClient(client.id)}>Delete</button>
                         </div>
                     </div>
                  </div>
@@ -71,4 +66,4 @@ function ClientAccountPage() {
     );
   }
   
-  export default ClientAccountPage;
+  export default ClientProfilePage;

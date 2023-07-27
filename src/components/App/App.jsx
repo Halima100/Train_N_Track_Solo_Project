@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ClientAccountPage from '../ClientAccountPage/ClientAccountPage';
+import ClientProfilePage from '../ClientProfilePage/ClientProfliePage';
 
 import './App.css';
 
@@ -104,7 +105,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
-              <Redirect to="/ClientAccount" />
+              <Redirect to="/ClientProfilePage" />
               :
               // Otherwise, show the Landing page
               <LandingPage />
@@ -117,6 +118,11 @@ function App() {
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
+          <Route
+            exact
+            path="/ClientProfilePage">
+              <ClientProfilePage />
+          </Route>
           <Route>
             <h1>404</h1>
           </Route>
