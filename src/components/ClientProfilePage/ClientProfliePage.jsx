@@ -44,7 +44,7 @@ function ClientProfilePage() {
       <p>Current Clients</p>
       {
         clientList.length === 0 && (
-          <div>No items on the shelf</div>
+          <div>No clients on the my list</div>
         )
       }
          {

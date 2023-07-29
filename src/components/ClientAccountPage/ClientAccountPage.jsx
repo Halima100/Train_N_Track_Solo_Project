@@ -3,7 +3,7 @@ import './ClientAccountPage.css'
 import {useDispatch, useSelector} from 'react-redux';
 
 function ClientAccountPage() {
-    const dispatch = useDispatch();
+     const dispatch = useDispatch();
     const client = useSelector((store) => store.client);
     const [clientList, setClientList] = useState([]);
   
