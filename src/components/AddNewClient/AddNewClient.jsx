@@ -7,10 +7,11 @@ import { useHistory } from 'react-router-dom';
 function AddNewClientForm () {
     
     const dispatch = useDispatch();
-    const clients = useSelector((store) => store.addClientReducer);
+    const clients = useSelector((store) => store.client);
     const [clientName, setClientName] = useState("");
     const [clientGoal, setClientGoal] = useState("");
     const [clientImage, setClientImage] = useState("");
+    const history = useHistory();
 
   
 
@@ -29,6 +30,8 @@ function AddNewClientForm () {
         setClientName('');
         setClientGoal('');
         setClientImage('');
+
+        history.push('/ClientProfilePage')
       };
    
 
@@ -79,26 +82,15 @@ function AddNewClientForm () {
           <input
             type="file"
             name="clientImage"
-            src={clients.clientImage}
+            value={clients.clientImage}
             required
-            onChange={(event) => setClientImage(event.target.src)}
+            onChange={(event) => setClientImage(event.target.value)}
           />
           </div>
 
       <button type="submit">Add Client</button>
    
          </form>
-
-         <h3>New Client:</h3>
-         <ul>
-         {clients.map((client) => (
-          <li key={client.id}>
-            <p>Name: {client.client_name}</p>
-            <p>Goals: {client.client_goals}</p>
-            <button onClick={() => deleteClient(client.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
 
         </div>
     )

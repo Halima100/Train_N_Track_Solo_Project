@@ -22,7 +22,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 router.post('/', rejectUnauthenticated, (req, res) => {
     const { client_name, client_goals, client_image } = req.body;
-    const queryText = `INSERT INTO "client_account" ("client_name", "client_goals", "client_image", "user_id") VALUES ($1, $2, $3, $4);`
+    const queryText = `INSERT INTO "client_accounts" ("client_name", "client_goals", "client_image", "user_id") VALUES ($1, $2, $3, $4);`
     pool.query(queryText, [client_name, client_goals, client_image, req.user.id]).then((result) =>{
         res.sendStatus(201);
     }).catch((error)=> {
@@ -32,7 +32,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-    const queryText = `DELETE FROM "client_account" WHERE "id" = $1 AND "user_id" = $2;`;
+    const queryText = `DELETE FROM "client_accounts" WHERE "id" = $1 AND "user_id" = $2;`;
     pool.query(queryText, [req.params.id, req.user.id])
     .then(() => {
     res.sendStatus(204);
