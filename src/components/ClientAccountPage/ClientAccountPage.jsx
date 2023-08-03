@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './ClientAccountPage.css'
 import {useDispatch, useSelector} from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function ClientAccountPage() {
      const dispatch = useDispatch();
     const client = useSelector((store) => store.client);
+    const history = useHistory();
     const [clientList, setClientList] = useState([]);
   
     useEffect(() => {
@@ -42,6 +44,10 @@ function ClientAccountPage() {
           });
       }
 
+   const updateClientForm =() => {
+    history.push('/UpdateClientForm/')
+   }
+
     return (
         <div className="container">
        <h2>Current Clients</h2>
@@ -61,6 +67,7 @@ function ClientAccountPage() {
                          <div className="desc">{client.client_goals}</div>
                         <div style={{textAlign: 'center', padding: '5px'}}>
                         <button style={{cursor: 'pointer'}} onClick={() => deleteClient(client.id)}>Delete</button>
+                        <button style={{cursor: 'pointer'}} onClick={() => updateClientForm(client.id)}>Update</button>
                         </div>
                     </div>
                  </div>

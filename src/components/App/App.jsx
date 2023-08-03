@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import ClientAccountPage from '../ClientAccountPage/ClientAccountPage';
 import ClientProfilePage from '../ClientProfilePage/ClientProfliePage';
 import AddNewClient from '../AddNewClient/AddNewClient';
+import UpdateClientForm from '../UpdateClientForm/UpdateClientForm';
 import './App.css';
 
 function App() {
@@ -128,6 +129,12 @@ function App() {
             path="/AddNewClient">
               <AddNewClient />
           </Route>
+          <Route
+            exact
+            path="/UpdateClientForm">
+              <UpdateClientForm />
+          </Route>
+          
           <Route>
             <h1>404</h1>
           </Route>

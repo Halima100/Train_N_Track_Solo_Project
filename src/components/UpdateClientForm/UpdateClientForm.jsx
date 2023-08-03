@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import './AddNewClient.css'
+import './UpdateClientForm.css'
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-
-function AddNewClientForm () {
-    
+function editClientForm (){
     const dispatch = useDispatch();
     const clients = useSelector((store) => store.client);
     const [clientName, setClientName] = useState("");
@@ -13,34 +11,28 @@ function AddNewClientForm () {
     const [clientImage, setClientImage] = useState("");
     const history = useHistory();
 
-  
 
-   const addNewClient = (event) => {
-    event.preventDefault();
-
-    dispatch({
-        type: 'ADD_CLIENT',
-        payload: {
-            client_name: clientName,
-            client_goals: clientGoal,
-            client_image: clientImage
-        }
-    })
-        // Clear the form 
-        setClientName('');
-        setClientGoal('');
-        setClientImage('');
-
-        history.push('/ClientProfilePage')
-      };  
+    const updateClient = (event) => {
+        event.preventDefault();
     
-    return(
+        dispatch({
+            type: 'UPDATE_CLIENT',
+            payload: {
+                client_name: clientName,
+                client_goals: clientGoal,
+                client_image: clientImage
+            }
+        })
+        history.push('/ClientProfilePage') 
+    }
+
+    return (
         <div>
             
-         <form className="formPanel" onSubmit={addNewClient}>
-                <h3>Add New Client</h3>   
+         <form className="formPanel" onSubmit={updateClient}>
+                <h3>Update Client Form</h3>   
             <div>  
-               Client Name:
+              Client Name 
           <input
             type="text"
             name="clientname"
@@ -72,7 +64,7 @@ function AddNewClientForm () {
           />
           </div>
 
-      <button type="submit">Add Client</button>
+      <button type="submit">Update Client</button>
    
          </form>
 
@@ -81,4 +73,4 @@ function AddNewClientForm () {
 
 }
 
-export default AddNewClientForm;
+export default editClientForm;

@@ -1,4 +1,4 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from "redux-saga/effects";
 
 // // worker Saga: will be fired on "FETCH_USER" actions
 // function* addClient(action) {
@@ -18,25 +18,22 @@ import { put, takeLatest } from 'redux-saga/effects';
 //   }
 // }
 
-
 // }
 
 function* addClient(action) {
-    try {
-      yield fetch('/api/client_account', {
-        method: 'POST',
-        body: JSON.stringify(action.payload),
-        headers: { 'Content-Type': 'application/json' }
-      });
-      yield put({ type: 'FETCH_CLIENTS' });
+  try {
+    yield fetch("/api/client_account", {
+      method: "POST",
+      body: JSON.stringify(action.payload),
+      headers: { "Content-Type": "application/json" },
+    });
+    yield put({ type: "FETCH_CLIENTS" });
+  } catch (error) {
+    console.log("Adding an element failed:", error);
+  }
+}
 
-    } catch (error) {
-      console.log('Adding an element failed:', error);
-    }
-  }
-  
-  function* addClientSaga() {
-  yield takeLatest('ADD_CLIENT', addClient);
-  
-  }
+function* addClientSaga() {
+  yield takeLatest("ADD_CLIENT", addClient);
+}
 export default addClientSaga;
