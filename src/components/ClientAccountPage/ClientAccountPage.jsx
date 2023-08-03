@@ -48,7 +48,7 @@ function ClientAccountPage() {
 
       {
         clientList.length === 0 && (
-          <div>No items on the shelf</div>
+          <div>No clients</div>
         )
       }
          {

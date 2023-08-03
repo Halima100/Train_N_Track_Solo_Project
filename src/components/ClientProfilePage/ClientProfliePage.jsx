@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import selectedClient from '../../redux/reducers/selectClient.reducer';
 import { useHistory } from 'react-router-dom';
 
+//home page
 function ClientProfilePage() {
     const dispatch = useDispatch();
     const client = useSelector((store) => store.client);
@@ -35,13 +36,17 @@ function ClientProfilePage() {
     const clickClient = (client) => {
         dispatch({type:"SET_SELECTED_CLIENT", payload: client});
         history.push('/ClientAccount')
-    }
+    };
+    
+    const addNewClient = () => {
+        history.push('/AddNewClient')
+    };
  
 
     return (
         <div className="container">
-       <h2>Clients</h2>
-      <p>Current Clients</p>
+       <h2>Client List</h2>
+    <button onClick={addNewClient}>Add New Client</button>
       {
         clientList.length === 0 && (
           <div>No clients on the my list</div>
