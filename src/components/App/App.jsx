@@ -131,7 +131,7 @@ function App() {
           </Route>
           <Route
             exact
-            path="/UpdateClientForm">
+            path="/UpdateClientForm/:id">
               <UpdateClientForm />
           </Route>
           

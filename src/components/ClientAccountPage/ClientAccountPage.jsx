@@ -44,8 +44,8 @@ function ClientAccountPage() {
           });
       }
 
-   const updateClientForm =() => {
-    history.push('/UpdateClientForm/')
+   const updateClientForm =(id) => {
+    history.push(`/UpdateClientForm/${id}`)
    }
 
     return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './UpdateClientForm.css'
 import {useDispatch, useSelector} from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 function editClientForm (){
     const dispatch = useDispatch();
@@ -10,7 +10,7 @@ function editClientForm (){
     const [clientGoal, setClientGoal] = useState("");
     const [clientImage, setClientImage] = useState("");
     const history = useHistory();
-
+    const {id} = useParams();
 
     const updateClient = (event) => {
         event.preventDefault();
@@ -18,6 +18,7 @@ function editClientForm (){
         dispatch({
             type: 'UPDATE_CLIENT',
             payload: {
+                id: id,
                 client_name: clientName,
                 client_goals: clientGoal,
                 client_image: clientImage
