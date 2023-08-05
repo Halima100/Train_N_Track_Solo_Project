@@ -1,6 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 
-// worker Saga: will be fired on "FETCH_USER" actions
+// worker Saga: will be fired on "FETCH_CLIENT" actions
 function* fetchClients() {
   try {
     const response = yield fetch('/api/client_account');
@@ -9,9 +9,7 @@ function* fetchClients() {
     }
     const client = yield response.json();
 
-    // now that the session has given us a user object
-    // with an id and username set the client-side user object to let
-    // the client-side code know the user is logged in
+    // now that the session has given us a client object
     yield put({ type: 'SET_CLIENT', payload: client });
   } catch (error) {
     console.log('User get request failed', error);

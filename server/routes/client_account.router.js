@@ -5,11 +5,9 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
 
-//rejectUnauthenticated reques the user to be logged in to access this route
 router.get("/", rejectUnauthenticated, (req, res) => {
-  // Checks to see if the user is logged in
+ 
   console.log(req.isAuthenticated());
-  //req.user is the logged in user
   console.log(req.user);
   const queryText = `SELECT * FROM "client_accounts" WHERE user_id = $1;`;
   pool

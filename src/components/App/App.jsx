@@ -23,6 +23,7 @@ import ClientAccountPage from '../ClientAccountPage/ClientAccountPage';
 import ClientProfilePage from '../ClientProfilePage/ClientProfliePage';
 import AddNewClient from '../AddNewClient/AddNewClient';
 import UpdateClientForm from '../UpdateClientForm/UpdateClientForm';
+import WorkoutPage from '../WorkoutPage/WorkoutPage';
 import './App.css';
 
 function App() {
@@ -134,7 +135,12 @@ function App() {
             path="/UpdateClientForm/:id">
               <UpdateClientForm />
           </Route>
-          
+          <Route
+            exact
+            path="/WorkoutPage">
+              <WorkoutPage />
+          </Route>
+
           <Route>
             <h1>404</h1>
           </Route>

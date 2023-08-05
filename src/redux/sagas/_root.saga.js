@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import clientSaga from './client.saga'
 import addClientSaga from './addClient.saga';
 import updateClientSaga from './updateClient.saga';
+import workoutSaga from './workout.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     clientSaga(),
     addClientSaga(),
     updateClientSaga(),
+    workoutSaga(),
   ]);
 }
