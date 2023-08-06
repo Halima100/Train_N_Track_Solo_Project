@@ -57,12 +57,18 @@ return (
         return (
             <div className="responsive" key={workout.id}>
             <div className="gallery"></div>
-            <div className="desc">{workout.date}</div>
-            <div className="desc">{workout.workout}</div>
-            <div className="desc">{workout.sets}</div>
-            <div className="desc">{workout.repetition}</div>
-            <div className="desc">{workout.weight}</div>
-            <div className="desc">{workout.comment}</div>
+            <div className="desc" >
+            <span className="label">Date: </span>{workout.date}</div>
+            <div className="desc"> 
+            <span className="label">Workout: </span> {workout.workout}</div>
+            <div className="desc"> 
+            <span className="label">Sets: </span>{workout.sets}</div>
+            <div className="desc">
+            <span className="label">Reps: </span>{workout.repetition}</div>
+            <div className="desc">
+            <span className="label">Weight: </span>{workout.weight}</div>
+            <div className="desc">
+            <span className="label">Comment: </span>{workout.comment}</div>
             <div style={{ textAlign: "center", padding: "5px" }}>
             <button
                   style={{ cursor: "pointer" }}
