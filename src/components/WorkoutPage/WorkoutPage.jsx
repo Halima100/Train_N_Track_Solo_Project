@@ -30,6 +30,20 @@ function WorkoutPage() {
             alert("Something went wrong.");
           });
       };
+    const deleteWorkout = (id) => {
+        fetch(`/api/workouts/${id}`, { method: "DELETE" })
+          .then((response) => {
+            if (response.ok) {
+              fetchWorkouts();
+            } else {
+              throw new Error("Network response was not OK");
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Something went wrong.");
+          });
+      };
 
 return (
     <div className="container">
@@ -40,12 +54,20 @@ return (
         return (
             <div className="responsive" key={workout.id}>
             <div className="gallery"></div>
+            <div className="desc">{workout.date}</div>
             <div className="desc">{workout.workout}</div>
             <div className="desc">{workout.sets}</div>
             <div className="desc">{workout.repetition}</div>
             <div className="desc">{workout.weight}</div>
             <div className="desc">{workout.comment}</div>
+            <button
+                  style={{ cursor: "pointer" }}
+                  onClick={() => deleteWorkout(workout.id)}
+                >
+                  Delete
+                </button>
             </div>
+            
         );
       })}
     </div>

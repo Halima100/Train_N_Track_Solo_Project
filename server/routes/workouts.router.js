@@ -22,10 +22,10 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   });
 
   router.post("/", rejectUnauthenticated, (req, res) => {
-    const { workout, sets ,repetition , weight , comment} = req.body;
-    const queryText = `INSERT INTO "workouts" ("client_id", "workout", "sets", "repetition", "weight", "comment") VALUES ($1, $2, $3, $4, $5, $6);`;
+    const { date, workout, sets ,repetition , weight , comment} = req.body;
+    const queryText = `INSERT INTO "workouts" ("client_id", "date", "workout", "sets", "repetition", "weight", "comment") VALUES ($1, $2, $3, $4, $5, $6);`;
     pool
-      .query(queryText, [ workout, sets ,repetition , weight , comment, req.user.id])
+      .query(queryText, [ date, workout, sets ,repetition , weight , comment, req.user.id])
       .then((result) => {
         res.sendStatus(201);
       })
@@ -35,4 +35,19 @@ router.get("/", rejectUnauthenticated, (req, res) => {
       });
   });
   
+
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
+    const queryText = `DELETE FROM "workouts" WHERE "id" = $1 AND "client_id" = $2;`;
+    pool
+      .query(queryText, [req.params.id, req.user.id])
+      .then(() => {
+        res.sendStatus(204);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.sendStatus(500);
+      });
+    // endpoint functionality
+  });
+
 module.exports = router;
