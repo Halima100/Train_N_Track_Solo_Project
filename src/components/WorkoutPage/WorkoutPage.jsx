@@ -44,6 +44,9 @@ function WorkoutPage() {
             alert("Something went wrong.");
           });
       };
+      const updateWorkoutForm = (id) => {
+        history.push(`/UpdateWorkoutForm/${id}`);
+      };
 
 return (
     <div className="container">
@@ -60,16 +63,25 @@ return (
             <div className="desc">{workout.repetition}</div>
             <div className="desc">{workout.weight}</div>
             <div className="desc">{workout.comment}</div>
+            <div style={{ textAlign: "center", padding: "5px" }}>
+            <button
+                  style={{ cursor: "pointer" }}
+                  onClick={() => updateWorkoutForm(workout.id)}
+                >
+                  Edit
+                </button>
             <button
                   style={{ cursor: "pointer" }}
                   onClick={() => deleteWorkout(workout.id)}
                 >
                   Delete
                 </button>
+                </div>
             </div>
             
         );
       })}
+          <div className="clearfix"></div>
     </div>
           
   

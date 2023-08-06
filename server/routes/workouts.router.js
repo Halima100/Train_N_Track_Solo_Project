@@ -34,6 +34,21 @@ router.get("/", rejectUnauthenticated, (req, res) => {
         res.sendStatus(500);
       });
   });
+
+  router.put("/:id", rejectUnauthenticated, (req, res) => {
+    const clientId = req.params.id;
+    const { date, workout, sets ,repetition , weight , comment } = req.body;
+    const queryText = `UPDATE "workouts" SET "date" = $1, "workout" = $2, "sets" = $3, "repetition" = $4, "weight" = $5, "comment" = $6 WHERE "id" = $7 AND "client_id" = $8`;
+    pool
+      .query(queryText, [date, workout, sets ,repetition , weight , comment, clientId, req.user.id])
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.sendStatus(500);
+      });
+  });
   
 
 router.delete("/:id", rejectUnauthenticated, (req, res) => {

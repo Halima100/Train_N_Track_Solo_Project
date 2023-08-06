@@ -24,6 +24,7 @@ import ClientProfilePage from '../ClientProfilePage/ClientProfliePage';
 import AddNewClient from '../AddNewClient/AddNewClient';
 import UpdateClientForm from '../UpdateClientForm/UpdateClientForm';
 import WorkoutPage from '../WorkoutPage/WorkoutPage';
+import UpdateWorkoutForm from '../UpdateWorkoutForm/UpdateWorkoutForm'
 import './App.css';
 
 function App() {
@@ -140,7 +141,11 @@ function App() {
             path="/WorkoutPage">
               <WorkoutPage />
           </Route>
-
+          <Route
+            exact
+            path="/UpdateWorkoutForm/:id">
+              <UpdateWorkoutForm />
+          </Route>
           <Route>
             <h1>404</h1>
           </Route>
