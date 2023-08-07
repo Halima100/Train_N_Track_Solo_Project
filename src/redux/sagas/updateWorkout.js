@@ -2,7 +2,7 @@ import { put, takeLatest } from "redux-saga/effects";
 
 function* updateWorkout(action) {
   try {
-    yield fetch(`/api/workout/${action.payload.id}`, {
+    yield fetch(`/api/workouts/${action.payload.id}`, {
       method: "PUT",
       body: JSON.stringify(action.payload),
       headers: { "Content-Type": "application/json" },

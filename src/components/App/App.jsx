@@ -24,7 +24,8 @@ import ClientProfilePage from '../ClientProfilePage/ClientProfliePage';
 import AddNewClient from '../AddNewClient/AddNewClient';
 import UpdateClientForm from '../UpdateClientForm/UpdateClientForm';
 import WorkoutPage from '../WorkoutPage/WorkoutPage';
-import UpdateWorkoutForm from '../UpdateWorkoutForm/UpdateWorkoutForm'
+import UpdateWorkoutForm from '../UpdateWorkoutForm/UpdateWorkoutForm';
+import AddNewWorkoutForm from '../AddNewWorkoutForm/AddNewWorkoutForm';
 import './App.css';
 
 function App() {
@@ -145,6 +146,11 @@ function App() {
             exact
             path="/UpdateWorkoutForm/:id">
               <UpdateWorkoutForm />
+          </Route>
+          <Route
+            exact
+            path="/AddNewWorkout">
+              <AddNewWorkoutForm />
           </Route>
           <Route>
             <h1>404</h1>

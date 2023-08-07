@@ -48,10 +48,14 @@ function WorkoutPage() {
         history.push(`/UpdateWorkoutForm/${id}`);
       };
 
+      const addNewWorkout = () => {
+        history.push('/addNewWorkout')
+    };
+
 return (
     <div className="container">
       <h2>Clients Workout</h2>
-
+      <button onClick={addNewWorkout}>Add New Workout</button>
       {workoutList.length === 0 && <div>No Workout</div>}
       {workoutList.map((workout) => {
         return (

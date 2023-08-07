@@ -22,10 +22,11 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   });
 
   router.post("/", rejectUnauthenticated, (req, res) => {
-    const { date, workout, sets ,repetition , weight , comment} = req.body;
-    const queryText = `INSERT INTO "workouts" ("client_id", "date", "workout", "sets", "repetition", "weight", "comment") VALUES ($1, $2, $3, $4, $5, $6);`;
+    const { date, workout, sets, repetition, weight, comment} = req.body;
+    console.log(req.body)
+    const queryText = `INSERT INTO "workouts" ("client_id", "date", "workout", "sets", "repetition", "weight", "comment") VALUES ($1, $2, $3, $4, $5, $6, $7);`;
     pool
-      .query(queryText, [ date, workout, sets ,repetition , weight , comment, req.user.id])
+      .query(queryText, [req.user.id, date, workout, sets, repetition, weight, comment,] )
       .then((result) => {
         res.sendStatus(201);
       })

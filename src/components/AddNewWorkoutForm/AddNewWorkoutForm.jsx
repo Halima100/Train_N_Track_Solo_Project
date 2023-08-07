@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './UpdateWorkoutForm.css'
+import './AddNewWorkoutForm.css'
 import {useDispatch, useSelector} from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-function editWorkoutForm() {
+
+function AddNewWorkoutForm () {
+    
     const dispatch = useDispatch();
     const workout = useSelector((store) => store.workoutReducer);
     const [workoutDate, setWorkoutDate] = useState("");
@@ -13,33 +15,40 @@ function editWorkoutForm() {
     const [workoutWeight, setWorkoutWeight] = useState("");
     const [workoutComment, setWorkoutComment] = useState("");
     const history = useHistory();
-    const {id} = useParams();  
-   
-   
-    const updateWorkout = (event) => {
-        event.preventDefault();
-    
-        dispatch({
-            type: 'UPDATE_WORKOUT',
-            payload: {
-                id,
-                date: workoutDate,
+
+  
+
+   const addNewWorkout = (event) => {
+    event.preventDefault();
+
+    dispatch({
+        type: 'ADD_WORKOUT',
+        payload: {
+          date: workoutDate,
 workout: workouts,
 sets: workoutSets,
 repetition: workoutRepetition,
 weight: workoutWeight,
 comment: workoutComment,
-            }
-        })
-        history.push('/WorkoutPage') 
-    }
+        }
+    })
+        // Clear the form 
+       
+setWorkouts('');
+setWorkoutSets('');
+setWorkoutRepetition('');
+setWorkoutWeight('');
+setWorkoutComment('');
 
-    return (
+        history.push('/WorkoutPage')
+      };  
+    
+    return(
         <div>
             
-         <form className="formPanel" onSubmit={updateWorkout}>
-                <h3>Update Workout Form</h3>   
-            <div>  
+         <form className="formPanel" onSubmit={addNewWorkout}>
+                <h3>Add Workout</h3>   
+                <div>  
              Date:
           <input
             type="text"
@@ -102,12 +111,13 @@ comment: workoutComment,
           />
          </div>   
 
-      <button type="submit">Update Workout</button>
+      <button type="submit">Add Workout</button>
    
          </form>
 
         </div>
     )
+
 }
 
-export default editWorkoutForm;
+export default AddNewWorkoutForm;
