@@ -4,16 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 function ClientAccountPage() {
-  const client = useSelector((store) => store.client);
+  // Client details
+  const client = useSelector((store) => store.selectedClient);
   const history = useHistory();
-  const [clientList, setClientList] = useState([]);
+  const [workoutList, setWorkoutList] = useState([]);
 
   useEffect(() => {
-    fetchClients();
+    fetchWorkoutList();
   }, []);
 
-  const fetchClients = () => {
-    fetch("/api/client_account")
+  const fetchWorkoutList = () => {
+    fetch(`/api/workouts/${client.id}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -21,8 +22,8 @@ function ClientAccountPage() {
           throw new Error("Network response was not OK");
         }
       })
-      .then((clientList) => {
-        setClientList(clientList);
+      .then((results) => {
+        setWorkoutList(results);
       })
       .catch((error) => {
         console.log(error);
@@ -33,7 +34,8 @@ function ClientAccountPage() {
     fetch(`/api/client_account/${id}`, { method: "DELETE" })
       .then((response) => {
         if (response.ok) {
-          fetchClients();
+          // fetchClients();
+          // navigate away from page?
         } else {
           throw new Error("Network response was not OK");
         }
@@ -50,9 +52,13 @@ function ClientAccountPage() {
 
   return (
     <div className="container">
-      <h2>Current Clients</h2>
+      <h2>Client Details</h2>
+      <h3>{client.client_name}</h3>
+      {JSON.stringify(client)}
 
-      {clientList.length === 0 && <div>No clients</div>}
+      <h2>Workout List</h2>
+      {JSON.stringify(workoutList)}
+      {/* {clientList.length === 0 && <div>No clients</div>}
       {clientList.map((client) => {
         return (
           <div className="responsive" key={client.id}>
@@ -62,25 +68,24 @@ function ClientAccountPage() {
               <div className="desc">{client.client_name}</div>
               <div className="desc">{client.client_goals}</div>
               <div style={{ textAlign: "center", padding: "5px" }}>
-               <button
+                <button
                   style={{ cursor: "pointer" }}
                   onClick={() => updateClientForm(client.id)}
                 >
                   Edit
                 </button>
-                
+
                 <button
                   style={{ cursor: "pointer" }}
                   onClick={() => deleteClient(client.id)}
                 >
                   Delete
                 </button>
-                
               </div>
             </div>
           </div>
         );
-      })}
+      })} */}
       <div className="clearfix"></div>
     </div>
   );

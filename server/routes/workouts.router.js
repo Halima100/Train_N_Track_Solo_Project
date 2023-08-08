@@ -5,13 +5,12 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
 
-router.get("/", rejectUnauthenticated, (req, res) => {
- 
+// Return all workouts for a client
+router.get("/:id", rejectUnauthenticated, (req, res) => {
     console.log(req.isAuthenticated());
-    console.log(req.user.id);
     const queryText = `SELECT * FROM "workouts" WHERE client_id = $1;`;
     pool
-      .query(queryText, [req.user.id])
+      .query(queryText, [req.params.id])
       .then((result) => {
         res.send(result.rows);
       })

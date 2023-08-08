@@ -6,7 +6,6 @@ const {
 } = require("../modules/authentication-middleware");
 
 router.get("/", rejectUnauthenticated, (req, res) => {
- 
   console.log(req.isAuthenticated());
   console.log(req.user);
   const queryText = `SELECT * FROM "client_accounts" WHERE user_id = $1;`;
@@ -21,6 +20,28 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.get("/:id", rejectUnauthenticated, (req, res) => {
+  console.log(req.isAuthenticated());
+  console.log(req.user);
+  const queryText = `
+        SELECT * 
+        FROM "client_accounts" WHERE id = $1;
+    `;
+  pool
+    .query(queryText, [req.params.id])
+    .then((result) => {
+      if (result.rows.length > 0) {
+        // Only return one record
+        res.send(result.rows[0]);
+      } else {
+        res.sendStatus(404);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
 router.post("/", rejectUnauthenticated, (req, res) => {
   const { client_name, client_goals, client_image } = req.body;
   const queryText = `INSERT INTO "client_accounts" ("client_name", "client_goals", "client_image", "user_id") VALUES ($1, $2, $3, $4);`;
@@ -40,7 +61,13 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
   const { client_name, client_goals, client_image } = req.body;
   const queryText = `UPDATE "client_accounts" SET "client_name" = $1, "client_goals" = $2, "client_image" = $3 WHERE "id" = $4 AND "user_id" = $5`;
   pool
-    .query(queryText, [client_name, client_goals, client_image, clientId, req.user.id])
+    .query(queryText, [
+      client_name,
+      client_goals,
+      client_image,
+      clientId,
+      req.user.id,
+    ])
     .then(() => {
       res.sendStatus(200);
     })
