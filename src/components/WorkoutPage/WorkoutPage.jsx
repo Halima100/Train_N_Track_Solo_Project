@@ -7,28 +7,33 @@ function WorkoutPage() {
     const workout = useSelector((store) => store.workout);
     const history = useHistory();
     const [workoutList, setWorkoutList] = useState([]);
-    
+    const dispatch = useDispatch();
+    const{client_id} = useParams();
 
     useEffect(() => {
     fetchWorkouts();
 }, []);
 
       const fetchWorkouts = () => {
-        fetch("/api/workouts")
-          .then((response) => {
-            if (response.ok) {
-              return response.json();
-            } else {
-              throw new Error("Network response was not OK");
-            }
-          })
-          .then((workoutList) => {
-            setWorkoutList(workoutList);
-          })
-          .catch((error) => {
-            console.log(error);
-            alert("Something went wrong.");
-          });
+        dispatch({
+            type: "FETCH_WORKOUT",
+            payload: client_id
+        })
+        // fetch("/workouts")
+        //   .then((response) => {
+        //     if (response.ok) {
+        //       return response.json();
+        //     } else {
+        //       throw new Error("Network response was not OK");
+        //     }
+        //   })
+        //   .then((workoutList) => {
+        //     setWorkoutList(workoutList);
+        //   })
+        //   .catch((error) => {
+        //     console.log(error);
+        //     alert("Something went wrong.");
+        //   });
       };
     const deleteWorkout = (id) => {
         fetch(`/api/workouts/${id}`, { method: "DELETE" })

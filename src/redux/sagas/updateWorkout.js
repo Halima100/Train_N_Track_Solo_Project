@@ -1,13 +1,18 @@
 import { put, takeLatest } from "redux-saga/effects";
+import { useHistory } from "react-router-dom";
+
 
 function* updateWorkout(action) {
+
   try {
-    yield fetch(`/api/workouts/${action.payload.id}`, {
+  const history = action.payload.history; 
+   yield fetch(`/api/workouts/${action.payload.id}/${action.payload.client_id}`, {
       method: "PUT",
       body: JSON.stringify(action.payload),
       headers: { "Content-Type": "application/json" },
     });
     yield put({ type: "FETCH_WORKOUT" });
+    history.push('/ClientAccount')
   } catch (error) {
     console.log("Updating client failed:", error);
   }

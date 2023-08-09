@@ -25,7 +25,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
     console.log(req.body)
     const queryText = `INSERT INTO "workouts" ("client_id", "date", "workout", "sets", "repetition", "weight", "comment") VALUES ($1, $2, $3, $4, $5, $6, $7);`;
     pool
-      .query(queryText, [req.user.id, date, workout, sets, repetition, weight, comment,] )
+      .query(queryText, [req.params.id, date, workout, sets, repetition, weight, comment,] )
       .then((result) => {
         res.sendStatus(201);
       })
@@ -35,12 +35,15 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
       });
   });
 
-  router.put("/:id", rejectUnauthenticated, (req, res) => {
-    const clientId = req.params.id;
+  router.put("/:id/:client_id", rejectUnauthenticated, (req, res) => {
+    // const clientId = req.params.id;
     const { date, workout, sets ,repetition , weight , comment } = req.body;
-    const queryText = `UPDATE "workouts" SET "date" = $1, "workout" = $2, "sets" = $3, "repetition" = $4, "weight" = $5, "comment" = $6 WHERE "id" = $7 AND "client_id" = $8`;
+    const queryText = `UPDATE "workouts"
+     SET "date" = $1, "workout" = $2, "sets" = $3, "repetition" = $4, "weight" = $5, "comment" = $6
+      WHERE "id" = $7 AND "client_id" = $8`;
+      console.log(queryText, "query")
     pool
-      .query(queryText, [date, workout, sets ,repetition , weight , comment, clientId, req.user.id])
+      .query(queryText, [date, workout, sets ,repetition , weight , comment, req.params.id, req.params.client_id])
       .then(() => {
         res.sendStatus(200);
       })
@@ -50,11 +53,15 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
       });
   });
   
+  
 
-router.delete("/:id", rejectUnauthenticated, (req, res) => {
+router.delete("/:id/:client_id", rejectUnauthenticated, (req, res) => {
     const queryText = `DELETE FROM "workouts" WHERE "id" = $1 AND "client_id" = $2;`;
+    console.log(req.params.id, req.params.client_id, "workoutID")
+    
+
     pool
-      .query(queryText, [req.params.id, req.user.id])
+      .query(queryText, [req.params.id,req.params.client_id])
       .then(() => {
         res.sendStatus(204);
       })

@@ -40,7 +40,7 @@ setWorkoutRepetition('');
 setWorkoutWeight('');
 setWorkoutComment('');
 
-        history.push('/WorkoutPage')
+        history.push('/ClientAccount')
       };  
     
     return(

@@ -13,7 +13,8 @@ function editWorkoutForm() {
     const [workoutWeight, setWorkoutWeight] = useState("");
     const [workoutComment, setWorkoutComment] = useState("");
     const history = useHistory();
-    const {id} = useParams();  
+    const {id, client_id} = useParams();  
+    
    
    
     const updateWorkout = (event) => {
@@ -23,15 +24,17 @@ function editWorkoutForm() {
             type: 'UPDATE_WORKOUT',
             payload: {
                 id,
+                client_id,
                 date: workoutDate,
-workout: workouts,
-sets: workoutSets,
-repetition: workoutRepetition,
-weight: workoutWeight,
-comment: workoutComment,
+                workout: workouts,
+                sets: workoutSets,
+                repetition: workoutRepetition,
+                weight: workoutWeight,
+                comment: workoutComment,
+                history,
             }
         })
-        history.push('/WorkoutPage') 
+        // history.push('/WorkoutPage') 
     }
 
     return (

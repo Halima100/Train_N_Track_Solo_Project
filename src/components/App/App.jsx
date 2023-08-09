@@ -139,12 +139,12 @@ function App() {
           </Route>
           <Route
             exact
-            path="/WorkoutPage">
+            path="/WorkoutPage/:client_id">
               <WorkoutPage />
           </Route>
           <Route
             exact
-            path="/UpdateWorkoutForm/:id">
+            path="/UpdateWorkoutForm/:id/:client_id">
               <UpdateWorkoutForm />
           </Route>
           <Route

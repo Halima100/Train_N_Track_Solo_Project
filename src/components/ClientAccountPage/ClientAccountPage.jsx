@@ -35,7 +35,8 @@ function ClientAccountPage() {
       .then((response) => {
         if (response.ok) {
           // fetchClients();
-          // navigate away from page?
+          // navigate away from page  
+           history.push(`/ClientProfilePage`);
         } else {
           throw new Error("Network response was not OK");
         }
@@ -44,20 +45,97 @@ function ClientAccountPage() {
         console.log(error);
         alert("Something went wrong.");
       });
+  
   };
 
   const updateClientForm = (id) => {
     history.push(`/UpdateClientForm/${id}`);
   };
 
+  const deleteWorkout = (id, client_id) => {
+        fetch(`/api/workouts/${id}/${client_id}`, { method: "DELETE" })
+          .then((response) => {
+            if (response.ok) {
+                fetchWorkoutList();
+            } else {
+              throw new Error("Network response was not OK");
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Something went wrong.");
+          });
+      };
+      const updateWorkoutForm = (id, client_id) => {
+        history.push(`/UpdateWorkoutForm/${id}/${client_id}`);
+      };
+
+      const addNewWorkout = () => {
+        history.push('/addNewWorkout')
+    };
+
   return (
     <div className="container">
       <h2>Client Details</h2>
-      <h3>{client.client_name}</h3>
+      <div className="clientInfo">
+      <div>{client.client_name}</div>
+      <img src ={client.client_image}/>
+      <div>{client.client_goals}</div>
+    </div>
       {JSON.stringify(client)}
+<div style={{ textAlign: "center", padding: "5px" }}>
+                <button
+                  style={{ cursor: "pointer" }}
+                  onClick={() => updateClientForm(client.id)}
+                >
+                  Edit
+                </button>
 
+                <button
+                  style={{ cursor: "pointer" }}
+                  onClick={() => deleteClient(client.id)}
+                >
+                  Delete
+                </button>
+              </div>
       <h2>Workout List</h2>
+      <button onClick={addNewWorkout}>Add New Workout</button>
       {JSON.stringify(workoutList)}
+      <div className="workoutInfo">
+       {workoutList.map((workout) => (
+            
+            <div className="responsive" key={workout.id}>
+            <div className="desc" >
+            <span className="label">Date: </span>{workout.date}</div>
+            <div className="desc"> 
+            <span className="label">Workout: </span> {workout.workout}</div>
+            <div className="desc"> 
+            <span className="label">Sets: </span>{workout.sets}</div>
+            <div className="desc">
+            <span className="label">Reps: </span>{workout.repetition}</div>
+            <div className="desc">
+            <span className="label">Weight: </span>{workout.weight}</div>
+            <div className="desc">
+            <span className="label">Comment: </span>{workout.comment}</div>
+             <div style={{ textAlign: "center", padding: "5px" }}>
+              <button
+                  style={{ cursor: "pointer" }}
+                  onClick={() => updateWorkoutForm(workout.id, workout.client_id)}
+                >
+                  Edit
+                </button>
+                <button
+                  style={{ cursor: "pointer" }}
+                  onClick={() => deleteWorkout(workout.id, workout.client_id)}
+                >
+                  Delete
+                </button>
+                </div>
+          </div>
+       ))}
+          
+        </div>
+       
       {/* {clientList.length === 0 && <div>No clients</div>}
       {clientList.map((client) => {
         return (
@@ -86,7 +164,7 @@ function ClientAccountPage() {
           </div>
         );
       })} */}
-      <div className="clearfix"></div>
+      {/* <div className="clearfix"></div> */}
     </div>
   );
 }

@@ -10,13 +10,29 @@ CREATE TABLE "user" (
 );
 
 CREATE TABLE "client_accounts" (
-    "client_id" SERIAL PRIMARY KEY,
-    "user_id" VARCHAR (80) UNIQUE NOT NULL,
-    "client_name" VARCHAR (80),
+    "id" SERIAL PRIMARY KEY,
+    "user_id" VARCHAR (80) NOT NULL,
+     "client_name" VARCHAR(80) NOT NULL,
     "client_goals" TEXT NOT NULL,
-    "client_image" VARCHAR(120) NOT NULL
+    "client_image"  VARCHAR(1200) NOT NULL
 );
-
-INSERT INTO "client_accounts" ( "user_id","client_name", "client_goals", "client_image")
+INSERT INTO "client_accounts" ("user_id", "client_name", "client_goals", "client_image")
 VALUES 
-(1,'KIM','../Kim_Possible_(character_design).png');
+(1,'Kim','improve upper boy strength','images/Kim_possible_(character_design).png');
+
+
+
+CREATE TABLE "workouts" (
+    "id" SERIAL PRIMARY KEY,
+    "client_id" VARCHAR (80) NOT NULL,
+     "date" VARCHAR(80) NOT NULL,
+    "workout" VARCHAR (2000) NOT NULL,
+    "sets" INTEGER,
+    "repetition" INTEGER,
+    "weight" INTEGER,
+    "comment"TEXT NOT NULL
+    
+);
+INSERT INTO "workouts" ("client_id", "date", "workout", "sets", "repetition", "weight", "comment")
+VALUES 
+(1,'07-05-23','Dumbbell Bench Press','3', '12', '20', 'Great form and power  ');
