@@ -117,7 +117,7 @@ function App() {
           </Route>
           <Route
             exact
-            path="/ClientAccount">
+            path="/ClientAccount/:id">
               <ClientAccountPage />
           </Route>
 
@@ -149,7 +149,7 @@ function App() {
           </Route>
           <Route
             exact
-            path="/AddNewWorkout">
+            path="/AddNewWorkout/:client_id">
               <AddNewWorkoutForm />
           </Route>
           <Route>

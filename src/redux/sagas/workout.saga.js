@@ -1,9 +1,9 @@
 import { put, takeLatest } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_WORKOUT" actions
-function* fetchWorkouts() {
+function* fetchWorkouts(action) {
   try {
-    const response = yield fetch('/api/workouts/');
+    const response = yield fetch(`/api/workouts/${action.payload}`);
     if (!response.ok) {
       throw new Error("Network response was not OK");
     }

@@ -35,7 +35,7 @@ function ClientProfilePage() {
 
     const clickClient = (client) => {
         dispatch({type:"SET_SELECTED_CLIENT", payload: client});
-        history.push('/ClientAccount')
+        history.push(`/ClientAccount/${client.id}`)
     };
     
     const addNewClient = () => {

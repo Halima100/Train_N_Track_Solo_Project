@@ -20,12 +20,13 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
       });
   });
 
-  router.post("/", rejectUnauthenticated, (req, res) => {
+  router.post("/:client_id", rejectUnauthenticated, (req, res) => {
     const { date, workout, sets, repetition, weight, comment} = req.body;
     console.log(req.body)
+   
     const queryText = `INSERT INTO "workouts" ("client_id", "date", "workout", "sets", "repetition", "weight", "comment") VALUES ($1, $2, $3, $4, $5, $6, $7);`;
     pool
-      .query(queryText, [req.params.id, date, workout, sets, repetition, weight, comment,] )
+      .query(queryText, [req.params.client_id, date, workout, sets, repetition, weight, comment ] )
       .then((result) => {
         res.sendStatus(201);
       })

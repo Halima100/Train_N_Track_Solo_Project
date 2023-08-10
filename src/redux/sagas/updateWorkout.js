@@ -1,6 +1,4 @@
 import { put, takeLatest } from "redux-saga/effects";
-import { useHistory } from "react-router-dom";
-
 
 function* updateWorkout(action) {
 
@@ -12,7 +10,7 @@ function* updateWorkout(action) {
       headers: { "Content-Type": "application/json" },
     });
     yield put({ type: "FETCH_WORKOUT" });
-    history.push('/ClientAccount')
+    history.push(`/ClientAccount/${action.payload.client_id}`)
   } catch (error) {
     console.log("Updating client failed:", error);
   }

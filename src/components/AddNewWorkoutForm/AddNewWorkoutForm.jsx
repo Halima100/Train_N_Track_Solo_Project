@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './AddNewWorkoutForm.css'
 import {useDispatch, useSelector} from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 
 function AddNewWorkoutForm () {
@@ -15,7 +15,7 @@ function AddNewWorkoutForm () {
     const [workoutWeight, setWorkoutWeight] = useState("");
     const [workoutComment, setWorkoutComment] = useState("");
     const history = useHistory();
-
+    const { client_id} = useParams();  
   
 
    const addNewWorkout = (event) => {
@@ -24,12 +24,14 @@ function AddNewWorkoutForm () {
     dispatch({
         type: 'ADD_WORKOUT',
         payload: {
+          client_id,
           date: workoutDate,
 workout: workouts,
 sets: workoutSets,
 repetition: workoutRepetition,
 weight: workoutWeight,
 comment: workoutComment,
+history,
         }
     })
         // Clear the form 
@@ -40,7 +42,7 @@ setWorkoutRepetition('');
 setWorkoutWeight('');
 setWorkoutComment('');
 
-        history.push('/ClientAccount')
+        // history.push('/ClientAccount')
       };  
     
     return(

@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "./ClientAccountPage.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 function ClientAccountPage() {
   // Client details
   const client = useSelector((store) => store.selectedClient);
   const history = useHistory();
   const [workoutList, setWorkoutList] = useState([]);
-
-  useEffect(() => {
+const {id} = useParams();
+  
+useEffect(() => {
     fetchWorkoutList();
   }, []);
 
   const fetchWorkoutList = () => {
-    fetch(`/api/workouts/${client.id}`)
+    fetch(`/api/workouts/${id}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -70,8 +71,8 @@ function ClientAccountPage() {
         history.push(`/UpdateWorkoutForm/${id}/${client_id}`);
       };
 
-      const addNewWorkout = () => {
-        history.push('/addNewWorkout')
+      const addNewWorkout = ( client_id) => {
+        history.push(`/addNewWorkout/${client_id}`)
     };
 
   return (
@@ -86,20 +87,21 @@ function ClientAccountPage() {
 <div style={{ textAlign: "center", padding: "5px" }}>
                 <button
                   style={{ cursor: "pointer" }}
-                  onClick={() => updateClientForm(client.id)}
+                  onClick={() => updateClientForm(id)}
                 >
                   Edit
                 </button>
 
                 <button
                   style={{ cursor: "pointer" }}
-                  onClick={() => deleteClient(client.id)}
+                  onClick={() => deleteClient(id)}
                 >
                   Delete
                 </button>
               </div>
       <h2>Workout List</h2>
-      <button onClick={addNewWorkout}>Add New Workout</button>
+      
+   
       {JSON.stringify(workoutList)}
       <div className="workoutInfo">
        {workoutList.map((workout) => (
@@ -118,7 +120,13 @@ function ClientAccountPage() {
             <div className="desc">
             <span className="label">Comment: </span>{workout.comment}</div>
              <div style={{ textAlign: "center", padding: "5px" }}>
-              <button
+               <button
+                  style={{ cursor: "pointer" }}
+                  onClick={() => addNewWorkout( workout.client_id)}
+                >
+                Add Workout
+                </button>  
+                <button
                   style={{ cursor: "pointer" }}
                   onClick={() => updateWorkoutForm(workout.id, workout.client_id)}
                 >
