@@ -98,7 +98,14 @@ useEffect(() => {
                 >
                   Delete
                 </button>
-              </div>
+              </div>  
+              
+                  <button
+                  style={{ cursor: "pointer" }}
+                  onClick={() => addNewWorkout(id)}
+                >
+                Add Workout
+                </button>  
       <h2>Workout List</h2>
       
    
@@ -120,12 +127,7 @@ useEffect(() => {
             <div className="desc">
             <span className="label">Comment: </span>{workout.comment}</div>
              <div style={{ textAlign: "center", padding: "5px" }}>
-               <button
-                  style={{ cursor: "pointer" }}
-                  onClick={() => addNewWorkout( workout.client_id)}
-                >
-                Add Workout
-                </button>  
+         
                 <button
                   style={{ cursor: "pointer" }}
                   onClick={() => updateWorkoutForm(workout.id, workout.client_id)}
