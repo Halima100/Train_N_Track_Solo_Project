@@ -7,6 +7,7 @@ import addClientReducer from './addClient.reducer';
 import updateClientReducer from './updateClient.reducer';
 import workoutReducer from './workout.reducer';
 import addWorkoutReducer from './addWorkout.reducer';
+import imageReducer from './Image.reducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   updateClientReducer,
   workoutReducer,
   addWorkoutReducer,
+  imageReducer
 });
 
 export default rootReducer;

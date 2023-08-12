@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const clientAccountRouter = require('./routes/client_account.router');
 const clientWorkoutRouter = require('./routes/workouts.router');
+const clientImageRouter = require('./routes/client_images.router');
 
 // Express middleware
 app.use(express.json());
@@ -26,6 +27,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/client_account', clientAccountRouter);
 app.use('/api/workouts', clientWorkoutRouter);
+app.use('/api/client_images',clientImageRouter);
 
 // Serve static files
 app.use(express.static('build'));

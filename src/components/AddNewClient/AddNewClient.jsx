@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './AddNewClient.css'
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import ImageDialog from '../ImagesDialog/ImagesDialog';
+import { useParams } from "react-router-dom";
 
 
 function AddNewClientForm () {
@@ -11,6 +15,8 @@ function AddNewClientForm () {
     const [clientName, setClientName] = useState("");
     const [clientGoal, setClientGoal] = useState("");
     const [clientImage, setClientImage] = useState("");
+    const [clientUrl, setClientUrl] = useState(null);
+    const [openDialog, setOpenDialog] = useState(false);
     const history = useHistory();
 
   
@@ -23,7 +29,7 @@ function AddNewClientForm () {
         payload: {
             client_name: clientName,
             client_goals: clientGoal,
-            client_image: clientImage
+            client_image: clientUrl
         }
     })
         // Clear the form 
@@ -33,7 +39,19 @@ function AddNewClientForm () {
 
         history.push('/ClientProfilePage')
       };  
-    
+      const handleClose = () => {
+        setOpenDialog(false);
+      };
+
+      dispatch({
+        type: 'FETCH_IMAGE',
+        payload:{
+        client_image: clientImage
+        } 
+    })
+    const handleClientImage = (image) => {
+        setClientUrl(image);
+      };
     return(
         <div>
             
@@ -62,14 +80,12 @@ function AddNewClientForm () {
          </div>
          
          <div>
-            Client Image:
-          <input
-            type="file"
-            name="clientImage"
-            value={clients.clientImage}
-            required
-            onChange={(event) => setClientImage(event.target.value)}
-          />
+           
+          <Button
+          onClick={()=> setOpenDialog(true)}
+          >  Client Image:</Button> 
+          <ImageDialog open={openDialog} onClose={handleClose}  onClientImage={handleClientImage}/>
+        
           </div>
 
       <button type="submit">Add Client</button>

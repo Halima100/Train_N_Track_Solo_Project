@@ -36,3 +36,13 @@ CREATE TABLE "workouts" (
 INSERT INTO "workouts" ("client_id", "date", "workout", "sets", "repetition", "weight", "comment")
 VALUES 
 (1,'07-05-23','Dumbbell Bench Press','3', '12', '20', 'Great form and power  ');
+
+CREATE TABLE "client_images" (
+ "id" SERIAL PRIMARY KEY,
+ "image_name" VARCHAR(80) NOT NULL,
+  "client_image"  VARCHAR(1200) NOT NULL
+  
+);
+INSERT INTO "client_images" ("image_name", "client_image")
+VALUES 
+('AI One','https://images.unsplash.com/photo-1684369175833-4b445ad6bfb5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1396&q=80');

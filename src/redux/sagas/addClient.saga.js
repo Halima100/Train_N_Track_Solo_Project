@@ -27,7 +27,7 @@ function* addClient(action) {
       body: JSON.stringify(action.payload),
       headers: { "Content-Type": "application/json" },
     });
-    yield put({ type: "FETCH_CLIENTS" });
+    yield put({ type: "ADD_CLIENT" });
   } catch (error) {
     console.log("Adding an element failed:", error);
   }

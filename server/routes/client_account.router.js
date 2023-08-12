@@ -22,7 +22,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 
 router.get("/:id", rejectUnauthenticated, (req, res) => {
   console.log(req.isAuthenticated());
-  console.log(req.user);
+  console.log(req.user, "user");
   const queryText = `
         SELECT * 
         FROM "client_accounts" WHERE id = $1;
@@ -44,8 +44,11 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 });
 router.post("/", rejectUnauthenticated, (req, res) => {
   const { client_name, client_goals, client_image } = req.body;
-  const queryText = `INSERT INTO "client_accounts" ("client_name", "client_goals", "client_image", "user_id") VALUES ($1, $2, $3, $4);`;
+  const queryText = `INSERT INTO 
+  "client_accounts" ("client_name", "client_goals", "client_image", "user_id") 
+  VALUES ($1, $2, $3, $4);`;
   pool
+  console.log(req.body, "req.body")
     .query(queryText, [client_name, client_goals, client_image, req.user.id])
     .then((result) => {
       res.sendStatus(201);

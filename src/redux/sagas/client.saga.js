@@ -18,6 +18,7 @@ function* fetchClients(action) {
 
 function* fetchClientDetail(action) {
   try {
+    console.log(action.payload, "payload")
     const response = yield fetch(`/api/client_account/${action.payload}`);
     if (!response.ok) {
       throw new Error("Network response was not OK");

@@ -83,7 +83,7 @@ useEffect(() => {
       <img src ={client.client_image}/>
       <div>{client.client_goals}</div>
     </div>
-      {JSON.stringify(client)}
+      {/* {JSON.stringify(client)} */}
 <div style={{ textAlign: "center", padding: "5px" }}>
                 <button
                   style={{ cursor: "pointer" }}
@@ -109,7 +109,7 @@ useEffect(() => {
       <h2>Workout List</h2>
       
    
-      {JSON.stringify(workoutList)}
+      {/* {JSON.stringify(workoutList)} */}
       <div className="workoutInfo">
        {workoutList.map((workout) => (
             

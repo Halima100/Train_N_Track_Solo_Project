@@ -8,6 +8,7 @@ import updateClientSaga from './updateClient.saga';
 import workoutSaga from './workout.saga';
 import updateWorkoutSaga from './updateWorkout';
 import addWorkoutSaga from './addWorkout.saga';
+import imageSaga from './clientImage.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -27,5 +28,6 @@ export default function* rootSaga() {
     workoutSaga(),
     updateWorkoutSaga(),
     addWorkoutSaga(),
+    imageSaga(),
   ]);
 }
