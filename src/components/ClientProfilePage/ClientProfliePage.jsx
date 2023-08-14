@@ -47,6 +47,7 @@ function ClientProfilePage() {
         <div className="container">
        <h2>Client List</h2>
     <button onClick={addNewClient}>Add New Client</button>
+    <div className="client-list">
       {
         clientList.length === 0 && (
           <div>No clients on the my list</div>
@@ -56,9 +57,10 @@ function ClientProfilePage() {
         clientList.map(client => {
           return <div className="responsive" key={client.id}>
                     <div className="gallery">
-                       <button> <img src={client.client_image }
-                        onClick={() => clickClient(client)} /></button>
-                        <br />
+                       <button> <img src={client.client_image  }
+                        onClick={() => clickClient(client)} className="client-image"
+                        /></button>
+                        <br  />
                          <div className="desc">{client.client_name}</div>
                         <div style={{textAlign: 'center', padding: '5px'}}>
                         </div>
@@ -67,6 +69,7 @@ function ClientProfilePage() {
         })
       }
       <div className="clearfix"></div>
+      </div>
         </div>
     );
   }

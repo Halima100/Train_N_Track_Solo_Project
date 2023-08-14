@@ -38,10 +38,10 @@ function ImageDialog(props) {
       <List sx={{ pt: 0 }}>
         {setImage.map((item) => (
           <ListItem disableGutters key={item.client}>
-            <ListItemButton onClick={() => handleListItemClick(item)} key={item}>
+            <ListItemButton onClick={() => handleListItemClick(item)}>
              <ListItemAvatar>
                 <Avatar sx={{ width: 70, height: 70, bgcolor: blue[100], color: blue[600] }}>
-                  <img src ={item.client_image} />
+                  <img src ={item.client_image}  />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary={item.text} sx={{ ml: 2 }}  />

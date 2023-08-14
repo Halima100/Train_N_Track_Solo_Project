@@ -35,7 +35,7 @@ function AddNewClientForm () {
         // Clear the form 
         setClientName('');
         setClientGoal('');
-        setClientImage('');
+        setClientUrl(null);;
 
         history.push('/ClientProfilePage')
       };  
@@ -45,12 +45,12 @@ function AddNewClientForm () {
 
       dispatch({
         type: 'FETCH_IMAGE',
-        payload:{
-        client_image: clientImage
-        } 
+        // payload:{
+        // client_image: clientImage
+        // } 
     })
     const handleClientImage = (image) => {
-        setClientUrl(image);
+        setClientUrl(image.client_image);
       };
     return(
         <div>
@@ -62,7 +62,7 @@ function AddNewClientForm () {
           <input
             type="text"
             name="clientname"
-            value={clients.clientName}
+            value={clientName}
             required
             onChange={(event) => setClientName(event.target.value)}
           />
@@ -73,17 +73,17 @@ function AddNewClientForm () {
           <input
             type="text"
             name="clientGoals"
-            value={clients.clientGoal}
+            value={clientGoal}
             required
             onChange={(event) => setClientGoal(event.target.value)}
           />
          </div>
          
          <div>
-           
+         {clientUrl && <img src={clientUrl} className="client-image" />}
           <Button
           onClick={()=> setOpenDialog(true)}
-          >  Client Image:</Button> 
+          >  Select Client Image:</Button> 
           <ImageDialog open={openDialog} onClose={handleClose}  onClientImage={handleClientImage}/>
         
           </div>

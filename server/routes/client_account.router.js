@@ -42,14 +42,15 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+
 router.post("/", rejectUnauthenticated, (req, res) => {
   const { client_name, client_goals, client_image } = req.body;
   const queryText = `INSERT INTO 
   "client_accounts" ("client_name", "client_goals", "client_image", "user_id") 
-  VALUES ($1, $2, $3, $4);`;
-  pool
+  VALUES ($1, $2, $3, $4);`; 
+  
   console.log(req.body, "req.body")
-    .query(queryText, [client_name, client_goals, client_image, req.user.id])
+   pool.query(queryText, [client_name, client_goals, client_image, req.user.id])
     .then((result) => {
       res.sendStatus(201);
     })

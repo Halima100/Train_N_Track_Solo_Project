@@ -80,7 +80,7 @@ useEffect(() => {
       <h2>Client Details</h2>
       <div className="clientInfo">
       <div>{client.client_name}</div>
-      <img src ={client.client_image}/>
+      <img src ={client.client_image} className="client-image"/>
       <div>{client.client_goals}</div>
     </div>
       {/* {JSON.stringify(client)} */}

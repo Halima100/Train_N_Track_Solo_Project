@@ -21,19 +21,19 @@ import { put, takeLatest } from "redux-saga/effects";
 // }
 
 function* addClient(action) {
-  try {
-    yield fetch("/api/client_account", {
-      method: "POST",
-      body: JSON.stringify(action.payload),
-      headers: { "Content-Type": "application/json" },
-    });
-    yield put({ type: "ADD_CLIENT" });
-  } catch (error) {
-    console.log("Adding an element failed:", error);
+    try {
+      yield fetch("/api/client_account", {
+        method: "POST",
+        body: JSON.stringify(action.payload),
+        headers: { "Content-Type": "application/json" },
+      });
+      yield put({ type: "FETCH_CLIENTS" });
+    } catch (error) {
+      console.log("Adding an element failed:", error);
+    }
   }
-}
-
-function* addClientSaga() {
-  yield takeLatest("ADD_CLIENT", addClient);
-}
-export default addClientSaga;
+  
+  function* addClientSaga() {
+    yield takeLatest("ADD_CLIENT", addClient);
+  }
+  export default addClientSaga;

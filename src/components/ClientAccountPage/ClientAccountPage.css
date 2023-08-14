@@ -1,0 +1,23 @@
+
+  .client-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .responsive {
+    flex: 0 0 calc(33.33% - 20px);
+    margin: 10px;
+    text-align: center;
+
+  }
+  
+  .client-image {
+    max-width: 100%;
+    height: auto;
+    
+  }
+  
+  .desc {
+    margin-top: 5px;
+  }
