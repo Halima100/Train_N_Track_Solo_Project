@@ -3,6 +3,8 @@ import './ClientProfilePage.css'
 import {useDispatch, useSelector} from 'react-redux';
 import selectedClient from '../../redux/reducers/selectClient.reducer';
 import { useHistory } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 //home page
 function ClientProfilePage() {
@@ -46,7 +48,8 @@ function ClientProfilePage() {
     return (
         <div className="container">
        <h2>Client List</h2>
-    <button onClick={addNewClient}>Add New Client</button>
+      <Stack direction="row" spacing={2} sx={{ marginBottom: '1rem' }}>
+    <Button onClick={addNewClient}>Add New Client</Button></Stack>
     <div className="client-list">
       {
         clientList.length === 0 && (

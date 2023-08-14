@@ -5,8 +5,8 @@ import { useHistory } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import ImageDialog from '../ImagesDialog/ImagesDialog';
-import { useParams } from "react-router-dom";
-
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 function AddNewClientForm () {
     
@@ -58,25 +58,28 @@ function AddNewClientForm () {
          <form className="formPanel" onSubmit={addNewClient}>
                 <h3>Add New Client</h3>   
             <div>  
-               Client Name:
-          <input
+              
+      
+          <TextField id="outlined-basic" label="Client Name" variant="outlined"
             type="text"
             name="clientname"
             value={clientName}
             required
             onChange={(event) => setClientName(event.target.value)}
           />
+      
          </div> 
         
         <div>
-            Client Goals:
-          <input
+  
+           <TextField id="outlined-basic" label="Client Goal" variant="outlined"
             type="text"
             name="clientGoals"
             value={clientGoal}
             required
             onChange={(event) => setClientGoal(event.target.value)}
           />
+        
          </div>
          
          <div>
@@ -87,9 +90,9 @@ function AddNewClientForm () {
           <ImageDialog open={openDialog} onClose={handleClose}  onClientImage={handleClientImage}/>
         
           </div>
-
-      <button type="submit">Add Client</button>
-   
+          <Stack direction="row" spacing={2} sx={{ marginBottom: '1rem' }}>
+      <Button variant="contained" type="submit">Add Client</Button>
+   </Stack>
          </form>
 
         </div>

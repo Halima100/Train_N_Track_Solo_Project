@@ -2,6 +2,7 @@
     width: 200px;
     max-height: 200px;
 
+
 }
 
 .client-list {
@@ -20,14 +21,18 @@
     padding: 5px;
     border: .5px solid #ccc;
     box-shadow: 0 0 5px #ccc; 
- 
- 
-    
+
+    color: #a69191
 
   }
   
-
   
   .desc {
     margin-top: 5px;
+  }
+
+  h2 {
+    font-family: 'Montserrat, sans-serif';
+    color: #a69191;
+    font-size:x-large
   }

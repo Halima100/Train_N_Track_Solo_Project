@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./ClientAccountPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 function ClientAccountPage() {
   // Client details
@@ -85,27 +87,30 @@ useEffect(() => {
     </div>
       {/* {JSON.stringify(client)} */}
 <div style={{ textAlign: "center", padding: "5px" }}>
-                <button
+<Stack direction="row" spacing={2} sx={{ marginBottom: '1rem' }}>
+    <Button
                   style={{ cursor: "pointer" }}
                   onClick={() => updateClientForm(id)}
                 >
                   Edit
-                </button>
+                </Button>
 
-                <button
+                <Button
                   style={{ cursor: "pointer" }}
                   onClick={() => deleteClient(id)}
                 >
                   Delete
-                </button>
+                </Button>
+                </Stack>
               </div>  
               
-                  <button
+              <Stack direction="row" spacing={2} sx={{ marginBottom: '1rem' }}>
+                 <Button
                   style={{ cursor: "pointer" }}
                   onClick={() => addNewWorkout(id)}
                 >
                 Add Workout
-                </button>  
+                </Button>   </Stack>
       <h2>Workout List</h2>
       
    
@@ -127,19 +132,22 @@ useEffect(() => {
             <div className="desc">
             <span className="label">Comment: </span>{workout.comment}</div>
              <div style={{ textAlign: "center", padding: "5px" }}>
-         
-                <button
+             <div style={{ display: "flex", justifyContent: "center" }}>
+             <Stack direction="row" spacing={2} sx={{ marginBottom: '1rem' }}>
+                <Button
                   style={{ cursor: "pointer" }}
                   onClick={() => updateWorkoutForm(workout.id, workout.client_id)}
                 >
                   Edit
-                </button>
-                <button
+                </Button>
+                <Button
                   style={{ cursor: "pointer" }}
                   onClick={() => deleteWorkout(workout.id, workout.client_id)}
                 >
                   Delete
-                </button>
+                </Button>
+                </Stack>
+                </div>
                 </div>
           </div>
        ))}

@@ -9,6 +9,7 @@
     flex: 0 0 calc(33.33% - 20px);
     margin: 10px;
     text-align: center;
+    
 
   }
   
@@ -21,3 +22,8 @@
   .desc {
     margin-top: 5px;
   }
+
+.container {
+    font-family: 'Montserrat', sans-serif;
+    color: #808080;
+}
