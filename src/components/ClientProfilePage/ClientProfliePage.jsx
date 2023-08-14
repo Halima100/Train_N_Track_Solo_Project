@@ -57,9 +57,9 @@ function ClientProfilePage() {
         clientList.map(client => {
           return <div className="responsive" key={client.id}>
                     <div className="gallery">
-                       <button> <img src={client.client_image  }
+                        <img src={client.client_image  }
                         onClick={() => clickClient(client)} className="client-image"
-                        /></button>
+                        />
                         <br  />
                          <div className="desc">{client.client_name}</div>
                         <div style={{textAlign: 'center', padding: '5px'}}>
