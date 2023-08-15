@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './AddNewWorkoutForm.css'
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 function AddNewWorkoutForm () {
     
@@ -51,8 +53,8 @@ setWorkoutComment('');
          <form className="formPanel" onSubmit={addNewWorkout}>
                 <h3>Add Workout</h3>   
                 <div>  
-             Date:
-          <input
+            
+            <TextField id="outlined-basic" label="Date" variant="outlined"
             type="text"
             name="Date"
             value={workout.workoutDate}
@@ -62,8 +64,8 @@ setWorkoutComment('');
          </div> 
         
          <div>  
-             Workout:
-          <input
+          
+            <TextField id="outlined-basic" label="Workout" variant="outlined"
             type="text"
             name="workout"
             value={workout.workouts}
@@ -73,8 +75,8 @@ setWorkoutComment('');
          </div> 
          
          <div>  
-             Sets:
-          <input
+          
+            <TextField id="outlined-basic" label="Sets" variant="outlined"
             type="text"
             name="sets"
             value={workout.workoutSets}
@@ -83,8 +85,8 @@ setWorkoutComment('');
           />
          </div> 
          <div>  
-             Repetition:
-          <input
+            
+            <TextField id="outlined-basic" label="Repetition" variant="outlined"
             type="text"
             name="Repetition"
             value={workout.workoutRepetition}
@@ -93,8 +95,8 @@ setWorkoutComment('');
           />
          </div> 
          <div>  
-             Weight:
-          <input
+           
+            <TextField id="outlined-basic" label="Weight" variant="outlined"
             type="text"
             name="Weight"
             value={workout.workoutWeight}
@@ -103,8 +105,8 @@ setWorkoutComment('');
           />
          </div> 
          <div>  
-             Comment:
-          <input
+          
+            <TextField id="outlined-basic" label="Comment" variant="outlined"
             type="text"
             name="Comment"
             value={workout.workoutComment}
@@ -112,9 +114,9 @@ setWorkoutComment('');
             onChange={(event) => setWorkoutComment(event.target.value)}
           />
          </div>   
-
-      <button type="submit">Add Workout</button>
-   
+         <Stack direction="row" spacing={2} sx={{ marginBottom: '1rem' }}>
+      <Button variant="contained" type="submit">Add Workout</Button>
+      </Stack>
          </form>
 
         </div>

@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import ImageDialog from '../ImagesDialog/ImagesDialog';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 function AddNewClientForm () {

@@ -2,13 +2,19 @@ import React, { useState, useEffect } from 'react';
 import './UpdateClientForm.css'
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import ImageDialog from '../ImagesDialog/ImagesDialog';
+import TextField from '@mui/material/TextField';
 
 function editClientForm (){
     const dispatch = useDispatch();
     const clients = useSelector((store) => store.client);
     const [clientName, setClientName] = useState("");
     const [clientGoal, setClientGoal] = useState("");
+    const [clientUrl, setClientUrl] = useState(null);
     const [clientImage, setClientImage] = useState("");
+    const [openDialog, setOpenDialog] = useState(false);
     const history = useHistory();
     const {id} = useParams();
 
@@ -21,11 +27,22 @@ function editClientForm (){
                 id: id,
                 client_name: clientName,
                 client_goals: clientGoal,
-                client_image: clientImage
+                client_image: clientUrl
             }
         })
         history.push('/ClientProfilePage') 
     }
+    const handleClose = () => {
+        setOpenDialog(false);
+      };
+
+      dispatch({
+        type: 'FETCH_IMAGE',
+      
+    })
+    const handleClientImage = (image) => {
+        setClientUrl(image.client_image);
+      };
 
     return (
         <div>
@@ -33,8 +50,8 @@ function editClientForm (){
          <form className="formPanel" onSubmit={updateClient}>
                 <h3>Update Client Form</h3>   
             <div>  
-              Client Name 
-          <input
+           
+        <TextField id="outlined-basic" label="Client Name" variant="outlined"
             type="text"
             name="clientname"
             value={clients.clientName}
@@ -44,8 +61,8 @@ function editClientForm (){
          </div> 
         
         <div>
-            Client Goals:
-          <input
+     
+            <TextField id="outlined-basic" label="Client Goal" variant="outlined"
             type="text"
             name="clientGoals"
             value={clients.clientGoal}
@@ -55,18 +72,17 @@ function editClientForm (){
          </div>
          
          <div>
-            Client Image:
-          <input
-            type="file"
-            name="clientImage"
-            value={clients.clientImage}
-            required
-            onChange={(event) => setClientImage(event.target.value)}
-          />
+        
+            {clientUrl && <img src={clientUrl} className="client-image" />}
+          <Button
+          onClick={()=> setOpenDialog(true)}
+          >  Select Client Image:</Button> 
+          <ImageDialog open={openDialog} onClose={handleClose}  onClientImage={handleClientImage}/>
           </div>
 
-      <button type="submit">Update Client</button>
-   
+          <Stack direction="row" spacing={2} sx={{ marginBottom: '1rem' }}>
+      <Button variant="contained" type="submit">Add Client</Button>
+   </Stack>
          </form>
 
         </div>
