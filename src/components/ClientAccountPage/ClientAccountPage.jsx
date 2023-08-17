@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 
 function ClientAccountPage() {
   // Client details
+  const dispatch = useDispatch();
   const client = useSelector((store) => store.selectedClient);
   const history = useHistory();
   const [workoutList, setWorkoutList] = useState([]);
@@ -70,6 +71,12 @@ useEffect(() => {
           });
       };
       const updateWorkoutForm = (id, client_id) => {
+        dispatch({
+            type: "SET_WORKOUT",
+            payload: workoutList.find (
+                workout => workout.id === id
+            )
+        })
         history.push(`/UpdateWorkoutForm/${id}/${client_id}`);
       };
 

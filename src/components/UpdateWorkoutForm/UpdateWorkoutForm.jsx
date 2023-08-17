@@ -10,15 +10,15 @@ import TextField from '@mui/material/TextField';
 function editWorkoutForm() {
     const dispatch = useDispatch();
     const workout = useSelector((store) => store.workoutReducer);
-    const [workoutDate, setWorkoutDate] = useState("");
-    const [workouts, setWorkouts] = useState("");
-    const [workoutSets, setWorkoutSets] = useState("");
-    const [workoutRepetition, setWorkoutRepetition] = useState("");
-    const [workoutWeight, setWorkoutWeight] = useState("");
-    const [workoutComment, setWorkoutComment] = useState("");
+    const [workoutDate, setWorkoutDate] = useState(workout.date);
+    const [workouts, setWorkouts] = useState(workout.workout);
+    const [workoutSets, setWorkoutSets] = useState(workout.sets);
+    const [workoutRepetition, setWorkoutRepetition] = useState(workout.repetition);
+    const [workoutWeight, setWorkoutWeight] = useState(workout.weight);
+    const [workoutComment, setWorkoutComment] = useState(workout.comment);
     const history = useHistory();
     const {id, client_id} = useParams();  
-    
+    console.log(workout, "workout");
    
    
     const updateWorkout = (event) => {
@@ -51,7 +51,7 @@ function editWorkoutForm() {
             <TextField id="outlined-basic" label="Date" variant="outlined"
             type="text"
             name="Date"
-            value={workout.workoutDate}
+            value={workoutDate}
             required
             onChange={(event) => setWorkoutDate(event.target.value)}
           />
@@ -62,7 +62,7 @@ function editWorkoutForm() {
          <TextField id="outlined-basic" label="Workout" variant="outlined"
             type="text"
             name="workout"
-            value={workout.workouts}
+            value={workouts}
             required
             onChange={(event) => setWorkouts(event.target.value)}
           />
@@ -73,7 +73,7 @@ function editWorkoutForm() {
          <TextField id="outlined-basic" label="Sets" variant="outlined"
             type="text"
             name="sets"
-            value={workout.workoutSets}
+            value={workoutSets}
             required
             onChange={(event) => setWorkoutSets(event.target.value)}
           />
@@ -83,7 +83,7 @@ function editWorkoutForm() {
             <TextField id="outlined-basic" label="Repetition" variant="outlined"
             type="text"
             name="Repetition"
-            value={workout.workoutRepetition}
+            value={workoutRepetition}
             required
             onChange={(event) => setWorkoutRepetition(event.target.value)}
           />
@@ -93,7 +93,7 @@ function editWorkoutForm() {
              <TextField id="outlined-basic" label="Weight" variant="outlined"
             type="text"
             name="Weight"
-            value={workout.workoutWeight}
+            value={workoutWeight}
             required
             onChange={(event) => setWorkoutWeight(event.target.value)}
           />
@@ -103,7 +103,7 @@ function editWorkoutForm() {
         <TextField id="outlined-basic" label="Comment" variant="outlined"
             type="text"
             name="Comment"
-            value={workout.workoutComment}
+            value={workoutComment}
             required
             onChange={(event) => setWorkoutComment(event.target.value)}
           />
