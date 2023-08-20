@@ -53,6 +53,10 @@ useEffect(() => {
   };
 
   const updateClientForm = (id) => {
+    dispatch({
+        type: "SET_CLIENT",
+        payload: client
+    })
     history.push(`/UpdateClientForm/${id}`);
   };
 

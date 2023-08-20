@@ -10,17 +10,20 @@ import TextField from '@mui/material/TextField';
 function editClientForm (){
     const dispatch = useDispatch();
     const clients = useSelector((store) => store.client);
-    const [clientName, setClientName] = useState("");
-    const [clientGoal, setClientGoal] = useState("");
+    const [clientName, setClientName] = useState(clients.client_name);
+    const [clientGoal, setClientGoal] = useState(clients.client_goals);
     const [clientUrl, setClientUrl] = useState(null);
     const [clientImage, setClientImage] = useState("");
     const [openDialog, setOpenDialog] = useState(false);
     const history = useHistory();
     const {id} = useParams();
+    console.log(clients, "client");
 
     const updateClient = (event) => {
         event.preventDefault();
-    
+    console.log( "name", clientName)
+    console.log("goal", clientGoal)
+    console.log("url", clientUrl)
         dispatch({
             type: 'UPDATE_CLIENT',
             payload: {
@@ -54,7 +57,7 @@ function editClientForm (){
         <TextField id="outlined-basic" label="Client Name" variant="outlined"
             type="text"
             name="clientname"
-            value={clients.clientName}
+            value={clientName}
             required
             onChange={(event) => setClientName(event.target.value)}
           />
@@ -65,7 +68,7 @@ function editClientForm (){
             <TextField id="outlined-basic" label="Client Goal" variant="outlined"
             type="text"
             name="clientGoals"
-            value={clients.clientGoal}
+            value={clientGoal}
             required
             onChange={(event) => setClientGoal(event.target.value)}
           />
@@ -77,11 +80,12 @@ function editClientForm (){
           <Button
           onClick={()=> setOpenDialog(true)}
           >  Select Client Image:</Button> 
-          <ImageDialog open={openDialog} onClose={handleClose}  onClientImage={handleClientImage}/>
+          <ImageDialog open={openDialog} onClose={handleClose}  onClientImage={handleClientImage}
+           onChange={(event) => setClientUrl(event.target.value)}/>
           </div>
 
           <Stack direction="row" spacing={2} sx={{ marginBottom: '1rem' }}>
-      <Button variant="contained" type="submit">Add Client</Button>
+      <Button variant="contained" type="submit"> Update Client</Button>
    </Stack>
          </form>
 

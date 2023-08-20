@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-
+import { useState} from 'react'
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
@@ -26,16 +26,29 @@ import UpdateClientForm from '../UpdateClientForm/UpdateClientForm';
 import WorkoutPage from '../WorkoutPage/WorkoutPage';
 import UpdateWorkoutForm from '../UpdateWorkoutForm/UpdateWorkoutForm';
 import AddNewWorkoutForm from '../AddNewWorkoutForm/AddNewWorkoutForm';
+// import { getPosts } from '../api/FetchSearch'
 import './App.css';
+// import SearchBar from '../SearchBar/SearchBar'
+// import ListPage from '../ListPage/ListPage'
+
 
 function App() {
   const dispatch = useDispatch();
+  const [posts, setPosts] = useState([])
+  const [searchResults, setSearchResults] = useState([])
 
   const user = useSelector(store => store.user);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   getPosts().then(json => {
+  //     setPosts(json)
+  //     setSearchResults(json)
+  //   })
+  // }, [])
 
   return (
     <Router>
@@ -152,6 +165,7 @@ function App() {
             path="/AddNewWorkout/:client_id">
               <AddNewWorkoutForm />
           </Route>
+          {/* <SearchBar posts={posts} setSearchResults={setSearchResults} /> */}
           <Route>
             <h1>404</h1>
           </Route>
