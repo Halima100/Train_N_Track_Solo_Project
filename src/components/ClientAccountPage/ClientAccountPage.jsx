@@ -120,7 +120,7 @@ useEffect(() => {
                   style={{ cursor: "pointer" }}
                   onClick={() => addNewWorkout(id)}
                 >
-                Add Workout
+                Add Exercise
                 </Button>   </Stack>
       <h2>Workout List</h2>
       

@@ -4,7 +4,8 @@ import './LandingPage.css';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
-
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
   const history = useHistory();
@@ -52,14 +53,18 @@ function LandingPage() {
           </p>
         </div>
         <div className="grid-col grid-col_4">
+      
           <RegisterForm />
 
-          <center>
+          <center>  
+            <Stack direction="row" spacing={2} sx={{ marginBottom: '1rem' }}>
             <h4>Already a Member?</h4>
-            <button className="btn btn_sizeSm" onClick={onLogin}>
+            <Button className="btn btn_sizeSm" variant="contained"  onClick={onLogin}>
               Login
-            </button>
+            </Button> 
+            </Stack>
           </center>
+         
         </div>
       </div>
     </div>

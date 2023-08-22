@@ -51,7 +51,7 @@ setWorkoutComment('');
         <div>
             
          <form className="formPanel" onSubmit={addNewWorkout}>
-                <h3>Add Workout</h3>   
+                <h3>Add Exercise</h3>   
                 <div>  
             
             <TextField id="outlined-basic" label="Date" variant="outlined"
@@ -115,7 +115,7 @@ setWorkoutComment('');
           />
          </div>   
          <Stack direction="row" spacing={2} sx={{ marginBottom: '1rem' }}>
-      <Button variant="contained" type="submit">Add Workout</Button>
+      <Button variant="contained" type="submit">Add Exercise</Button>
       </Stack>
          </form>
 
