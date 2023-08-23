@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./ClientAccountPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 
 function ClientAccountPage() {
   // Client details
@@ -11,9 +11,9 @@ function ClientAccountPage() {
   const client = useSelector((store) => store.selectedClient);
   const history = useHistory();
   const [workoutList, setWorkoutList] = useState([]);
-const {id} = useParams();
-  
-useEffect(() => {
+  const { id } = useParams();
+
+  useEffect(() => {
     fetchWorkoutList();
   }, []);
 
@@ -39,8 +39,8 @@ useEffect(() => {
       .then((response) => {
         if (response.ok) {
           // fetchClients();
-          // navigate away from page  
-           history.push(`/ClientProfilePage`);
+          // navigate away from page
+          history.push(`/ClientProfilePage`);
         } else {
           throw new Error("Network response was not OK");
         }
@@ -49,122 +49,131 @@ useEffect(() => {
         console.log(error);
         alert("Something went wrong.");
       });
-  
   };
 
   const updateClientForm = (id) => {
     dispatch({
-        type: "SET_CLIENT",
-        payload: client
-    })
+      type: "SET_CLIENT",
+      payload: client,
+    });
     history.push(`/UpdateClientForm/${id}`);
   };
 
   const deleteWorkout = (id, client_id) => {
-        fetch(`/api/workouts/${id}/${client_id}`, { method: "DELETE" })
-          .then((response) => {
-            if (response.ok) {
-                fetchWorkoutList();
-            } else {
-              throw new Error("Network response was not OK");
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-            alert("Something went wrong.");
-          });
-      };
-      const updateWorkoutForm = (id, client_id) => {
-        dispatch({
-            type: "SET_WORKOUT",
-            payload: workoutList.find (
-                workout => workout.id === id
-            )
-        })
-        history.push(`/UpdateWorkoutForm/${id}/${client_id}`);
-      };
+    fetch(`/api/workouts/${id}/${client_id}`, { method: "DELETE" })
+      .then((response) => {
+        if (response.ok) {
+          fetchWorkoutList();
+        } else {
+          throw new Error("Network response was not OK");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Something went wrong.");
+      });
+  };
+  const updateWorkoutForm = (id, client_id) => {
+    dispatch({
+      type: "SET_WORKOUT",
+      payload: workoutList.find((workout) => workout.id === id),
+    });
+    history.push(`/UpdateWorkoutForm/${id}/${client_id}`);
+  };
 
-      const addNewWorkout = ( client_id) => {
-        history.push(`/addNewWorkout/${client_id}`)
-    };
+  const addNewWorkout = (client_id) => {
+    history.push(`/addNewWorkout/${client_id}`);
+  };
 
   return (
     <div className="container">
       <h2>Client Details</h2>
       <div className="clientInfo">
-      <div>{client.client_name}</div>
-      <img src ={client.client_image} className="client-image"/>
-      <div>{client.client_goals}</div>
-    </div>
+        <div>{client.client_name}</div>
+        <img src={client.client_image} className="client-image" />
+        <div>{client.client_goals}</div>
+      </div>
       {/* {JSON.stringify(client)} */}
-<div style={{ textAlign: "center", padding: "5px" }}>
-<Stack direction="row" spacing={2} sx={{ marginBottom: '1rem' }}>
-    <Button
-                  style={{ cursor: "pointer" }}
-                  onClick={() => updateClientForm(id)}
-                >
-                  Edit
-                </Button>
+      <div style={{ textAlign: "center", padding: "5px" }}>
+        <Stack direction="row" spacing={2} sx={{ marginBottom: "1rem" }}>
+          <Button
+            style={{ cursor: "pointer" }}
+            onClick={() => updateClientForm(id)}
+          >
+            Edit
+          </Button>
 
-                <Button
-                  style={{ cursor: "pointer" }}
-                  onClick={() => deleteClient(id)}
-                >
-                  Delete
-                </Button>
-                </Stack>
-              </div>  
-              
-              <Stack direction="row" spacing={2} sx={{ marginBottom: '1rem' }}>
-                 <Button
-                  style={{ cursor: "pointer" }}
-                  onClick={() => addNewWorkout(id)}
-                >
-                Add Exercise
-                </Button>   </Stack>
+          <Button
+            style={{ cursor: "pointer" }}
+            onClick={() => deleteClient(id)}
+          >
+            Delete
+          </Button>
+        </Stack>
+      </div>
+
+      <Stack direction="row" spacing={2} sx={{ marginBottom: "1rem" }}>
+        <Button style={{ cursor: "pointer" }} onClick={() => addNewWorkout(id)}>
+          Add Exercise
+        </Button>{" "}
+      </Stack>
       <h2>Workout List</h2>
-      
-   
+
       {/* {JSON.stringify(workoutList)} */}
       <div className="workoutInfo">
-       {workoutList.map((workout) => (
-            
-            <div className="responsive" key={workout.id}>
-            <div className="desc" >
-            <span className="label">Date: </span>{workout.date}</div>
-            <div className="desc"> 
-            <span className="label">Workout: </span> {workout.workout}</div>
-            <div className="desc"> 
-            <span className="label">Sets: </span>{workout.sets}</div>
+        {workoutList.map((workout) => (
+          <div className="responsive" key={workout.id}>
             <div className="desc">
-            <span className="label">Reps: </span>{workout.repetition}</div>
+              <span className="label">Date: </span>
+              {workout.date}
+            </div>
             <div className="desc">
-            <span className="label">Weight: </span>{workout.weight}</div>
+              <span className="label">Workout: </span> {workout.workout}
+            </div>
             <div className="desc">
-            <span className="label">Comment: </span>{workout.comment}</div>
-             <div style={{ textAlign: "center", padding: "5px" }}>
-             <div style={{ display: "flex", justifyContent: "center" }}>
-             <Stack direction="row" spacing={2} sx={{ marginBottom: '1rem' }}>
-                <Button
-                  style={{ cursor: "pointer" }}
-                  onClick={() => updateWorkoutForm(workout.id, workout.client_id)}
+              <span className="label">Sets: </span>
+              {workout.sets}
+            </div>
+            <div className="desc">
+              <span className="label">Reps: </span>
+              {workout.repetition}
+            </div>
+            <div className="desc">
+              <span className="label">Weight: </span>
+              {workout.weight}
+            </div>
+            <div className="desc">
+              <span className="label">Comment: </span>
+              {workout.comment}
+            </div>
+            <div style={{ textAlign: "center", padding: "5px" }}>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  sx={{ marginBottom: "1rem" }}
                 >
-                  Edit
-                </Button>
-                <Button
-                  style={{ cursor: "pointer" }}
-                  onClick={() => deleteWorkout(workout.id, workout.client_id)}
-                >
-                  Delete
-                </Button>
+                  <Button
+                    style={{ cursor: "pointer" }}
+                    onClick={() =>
+                      updateWorkoutForm(workout.id, workout.client_id)
+                    }
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    style={{ cursor: "pointer" }}
+                    onClick={() => deleteWorkout(workout.id, workout.client_id)}
+                  >
+                    Delete
+                  </Button>
                 </Stack>
-                </div>
-                </div>
+              </div>
+            </div>
           </div>
-       ))}
-          
-        </div>
-       
+        ))}
+      </div>
+
       {/* {clientList.length === 0 && <div>No clients</div>}
       {clientList.map((client) => {
         return (

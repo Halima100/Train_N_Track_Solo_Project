@@ -1,44 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   HashRouter as Router,
   Redirect,
   Route,
   Switch,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useState} from 'react'
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import Nav from "../Nav/Nav";
+import Footer from "../Footer/Footer";
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
+import AboutPage from "../AboutPage/AboutPage";
+import UserPage from "../UserPage/UserPage";
 // import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
-import ClientAccountPage from '../ClientAccountPage/ClientAccountPage';
-import ClientProfilePage from '../ClientProfilePage/ClientProfliePage';
-import AddNewClient from '../AddNewClient/AddNewClient';
-import UpdateClientForm from '../UpdateClientForm/UpdateClientForm';
-import WorkoutPage from '../WorkoutPage/WorkoutPage';
-import UpdateWorkoutForm from '../UpdateWorkoutForm/UpdateWorkoutForm';
-import AddNewWorkoutForm from '../AddNewWorkoutForm/AddNewWorkoutForm';
-import './App.css';
-
-
+import LandingPage from "../LandingPage/LandingPage";
+import LoginPage from "../LoginPage/LoginPage";
+import RegisterPage from "../RegisterPage/RegisterPage";
+import ClientAccountPage from "../ClientAccountPage/ClientAccountPage";
+import ClientProfilePage from "../ClientProfilePage/ClientProfliePage";
+import AddNewClient from "../AddNewClient/AddNewClient";
+import UpdateClientForm from "../UpdateClientForm/UpdateClientForm";
+import WorkoutPage from "../WorkoutPage/WorkoutPage";
+import UpdateWorkoutForm from "../UpdateWorkoutForm/UpdateWorkoutForm";
+import AddNewWorkoutForm from "../AddNewWorkoutForm/AddNewWorkoutForm";
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
-  const [posts, setPosts] = useState([])
-  const [searchResults, setSearchResults] = useState([])
+  const [posts, setPosts] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
   // useEffect(() => {
@@ -85,83 +83,60 @@ function App() {
             <InfoPage />
           </ProtectedRoute> */}
 
-          <Route
-            exact
-            path="/login"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/login">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the login page
               <LoginPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the registration page
               <RegisterPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/home">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/ClientProfilePage" />
-              :
+            ) : (
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            )}
           </Route>
-          <Route
-            exact
-            path="/ClientAccount/:id">
-              <ClientAccountPage />
+          <Route exact path="/ClientAccount/:id">
+            <ClientAccountPage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
-          <Route
-            exact
-            path="/ClientProfilePage">
-              <ClientProfilePage />
+          <Route exact path="/ClientProfilePage">
+            <ClientProfilePage />
           </Route>
-          <Route
-            exact
-            path="/AddNewClient">
-              <AddNewClient />
+          <Route exact path="/AddNewClient">
+            <AddNewClient />
           </Route>
-          <Route
-            exact
-            path="/UpdateClientForm/:id">
-              <UpdateClientForm />
+          <Route exact path="/UpdateClientForm/:id">
+            <UpdateClientForm />
           </Route>
-          <Route
-            exact
-            path="/WorkoutPage/:client_id">
-              <WorkoutPage />
+          <Route exact path="/WorkoutPage/:client_id">
+            <WorkoutPage />
           </Route>
-          <Route
-            exact
-            path="/UpdateWorkoutForm/:id/:client_id">
-              <UpdateWorkoutForm />
+          <Route exact path="/UpdateWorkoutForm/:id/:client_id">
+            <UpdateWorkoutForm />
           </Route>
-          <Route
-            exact
-            path="/AddNewWorkout/:client_id">
-              <AddNewWorkoutForm />
+          <Route exact path="/AddNewWorkout/:client_id">
+            <AddNewWorkoutForm />
           </Route>
           {/* <SearchBar posts={posts} setSearchResults={setSearchResults} /> */}
           <Route>

@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
 function LoginForm() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const errors = useSelector(store => store.errors);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
   const login = (event) => {
@@ -16,14 +16,14 @@ function LoginForm() {
 
     if (username && password) {
       dispatch({
-        type: 'LOGIN',
+        type: "LOGIN",
         payload: {
           username: username,
           password: password,
         },
       });
     } else {
-      dispatch({ type: 'LOGIN_INPUT_ERROR' });
+      dispatch({ type: "LOGIN_INPUT_ERROR" });
     }
   }; // end login
 
@@ -60,9 +60,16 @@ function LoginForm() {
         </label>
       </div>
       <div>
-      <Stack direction="row" spacing={2} sx={{ marginBottom: "1rem" }}>
-      <Button variant="contained" className="btn" type="submit" name="submit" value="Log In" >
-       Log In</Button>
+        <Stack direction="row" spacing={2} sx={{ marginBottom: "1rem" }}>
+          <Button
+            variant="contained"
+            className="btn"
+            type="submit"
+            name="submit"
+            value="Log In"
+          >
+            Log In
+          </Button>
         </Stack>
       </div>
     </form>
