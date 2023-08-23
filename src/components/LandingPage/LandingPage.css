@@ -79,6 +79,6 @@ Grid
   max-width: 100%;
 }
 
-/* .container {
-  background:url(../images/WeightsBackground.png);
-} */
+.container {
+  background-image: url('./public/WeightsBackground.png');
+}
