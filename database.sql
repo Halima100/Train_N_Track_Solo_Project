@@ -45,4 +45,7 @@ CREATE TABLE "client_images" (
 );
 INSERT INTO "client_images" ("image_name", "client_image")
 VALUES 
-('AI One','https://images.unsplash.com/photo-1684369175833-4b445ad6bfb5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1396&q=80');
+('Image 1','https://images.unsplash.com/photo-1580835239846-5bb9ce03c8c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHJvYm90fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60');
+('Image 2', 'https://images.unsplash.com/photo-1589254066213-a0c9dc853511?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJvYm90fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60')
+('Image 3',	'https://images.unsplash.com/photo-1534723328310-e82dad3ee43f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cm9ib3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60')
+('Image 4',	'https://images.unsplash.com/photo-1673107270721-90bd1fabb6c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fHJvYm90JTIwc3Ryb25nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60')
